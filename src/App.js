@@ -1,32 +1,66 @@
 import { Navigate, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
-import { POKE_API } from '../src/queries/Queries';
-import { useQuery } from "@apollo/client";
+import PokeFullList from "./components/PokeFullList/PokeFullList";
+import styled, { css } from "styled-components";
 
-function App() {
-  const {loading, error, data} = useQuery(POKE_API, {
-    variables: {limit: 20, offset: 0}
-  })
+const Container = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-  if (data) {
-    const dataResults = data.pokemons.results;
-    console.log(dataResults);
+const Button = styled.button`
+  border-radius: 5px;
+  border: 2px solid palevioletred;
+  background-color: #e3350d;
+  margin: 1em 2em;
+  transition: background-color 0.3s;
+  transition-timing-function: ease-out;
+
+  &:hover {
+    background: transparent;
   }
 
+  ${(props) =>
+    props.backBtn &&
+    css`
+      background: transparent;
+      color: #000;
 
+      &:hover {
+        background-color: #e3350d;
+      }
+    `}
+  > a {
+    color: #090909;
+    font-size: 24px;
+    padding: 0.25em 1em;
+    display: inline-block;
+    text-decoration: none;
+  }
+`;
+
+function App() {
   return (
-    <div>
-      <h1>PokeApp</h1>
-      <Link to="/pokemon">button</Link>
-      <Link to="/">back</Link>
+    <Container>
+      <h1 style={{ fontSize: "2.5em" }}>PokeApp</h1>
+      <div>
+        <Button>
+          <Link to="/pokemon">More</Link>
+        </Button>
+        <Button backBtn>
+          <Link to="/">Back</Link>
+        </Button>
+      </div>
       <Routes>
-        <Route path="/" exact element={<p>route1</p>}></Route>
-        <Route path="/pokemon" element={<p>route2 dexx</p>}></Route>
+        <Route path="/" exact element={<PokeFullList></PokeFullList>}></Route>
+        <Route
+          path="/pokemon"
+          element={<p>Future route in progress</p>}
+        ></Route>
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
-    </div>
+    </Container>
   );
 }
 
