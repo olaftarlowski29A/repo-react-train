@@ -2,6 +2,7 @@ import { Navigate, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
 import PokeFullList from "./components/PokeFullList/PokeFullList";
 import styled, { css } from "styled-components";
+import PokeSingle from "./components/PokeSingle/PokeSingle";
 
 const Container = styled.section`
   display: flex;
@@ -56,7 +57,7 @@ function App() {
         <Route path="/" exact element={<PokeFullList></PokeFullList>}></Route>
         <Route
           path="/pokemon"
-          element={<p>Future route in progress</p>}
+          element={<PokeSingle></PokeSingle>}
         ></Route>
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
