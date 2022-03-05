@@ -2,11 +2,15 @@ import { Navigate, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
 import PokeFullList from "./components/PokeFullList/PokeFullList";
 import styled, { css } from "styled-components";
+import backgroundImage from "../src/assets/container_bg.png";
 
 const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
+  min-height: 100vh;
+  background: url(${backgroundImage});
 `;
 
 const Button = styled.button`
@@ -18,13 +22,13 @@ const Button = styled.button`
   transition-timing-function: ease-out;
 
   &:hover {
-    background: transparent;
+    background: #fff;
   }
 
   ${(props) =>
     props.backBtn &&
     css`
-      background: transparent;
+      background: #fff;
       color: #000;
 
       &:hover {
@@ -40,10 +44,15 @@ const Button = styled.button`
   }
 `;
 
+const Headline = styled.h1`
+  font-size: 2.5em;
+  text-decoration: underline;
+`;
+
 function App() {
   return (
     <Container>
-      <h1 style={{ fontSize: "2.5em" }}>PokeApp</h1>
+      <Headline>PokeApp</Headline>
       <div>
         <Button>
           <Link to="/pokemon">More</Link>
