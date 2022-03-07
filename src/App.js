@@ -64,8 +64,8 @@ function App() {
           ></Route>
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Routes>
+        <SideMenu></SideMenu>
       </Container>
-      <SideMenu></SideMenu>
     </>
   );
 }
