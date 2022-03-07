@@ -1,12 +1,15 @@
 import { Navigate, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
 import PokeFullList from "./components/PokeFullList/PokeFullList";
+import SideMenu from "./components/SideMenu/SideMenu";
 import styled, { css } from "styled-components";
 
 const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  min-height: 120vh;
 `;
 
 const Button = styled.button`
@@ -42,25 +45,28 @@ const Button = styled.button`
 
 function App() {
   return (
-    <Container>
-      <h1 style={{ fontSize: "2.5em" }}>PokeApp</h1>
-      <div>
-        <Button>
-          <Link to="/pokemon">More</Link>
-        </Button>
-        <Button backBtn>
-          <Link to="/">Back</Link>
-        </Button>
-      </div>
-      <Routes>
-        <Route path="/" exact element={<PokeFullList></PokeFullList>}></Route>
-        <Route
-          path="/pokemon"
-          element={<p>Future route in progress</p>}
-        ></Route>
-        <Route path="*" element={<Navigate to="/" />}></Route>
-      </Routes>
-    </Container>
+    <>
+      <Container>
+        <h1 style={{ fontSize: "2.5em" }}>PokeApp</h1>
+        <div>
+          <Button>
+            <Link to="/pokemon">More</Link>
+          </Button>
+          <Button backBtn>
+            <Link to="/">Back</Link>
+          </Button>
+        </div>
+        <Routes>
+          <Route path="/" exact element={<PokeFullList></PokeFullList>}></Route>
+          <Route
+            path="/pokemon"
+            element={<p>Future route in progress</p>}
+          ></Route>
+          <Route path="*" element={<Navigate to="/" />}></Route>
+        </Routes>
+      </Container>
+      <SideMenu></SideMenu>
+    </>
   );
 }
 
