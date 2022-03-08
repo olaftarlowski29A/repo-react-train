@@ -11,7 +11,7 @@ const Container = styled.section`
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  min-height: 100vh;
+  min-height: 110vh;
   background: url(${backgroundImage});
 `;
 

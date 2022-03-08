@@ -28,7 +28,7 @@ const SideMenu = () => {
           position: "fixed",
           inset: `50% 0px 0px 0px`,
           width: "90px",
-          height: "30px",
+          height: "50px",
           transform: `translateX(${sideMenuToggleDist}px)`,
           transition: "transform 0.3s ease-out 0s",
         },

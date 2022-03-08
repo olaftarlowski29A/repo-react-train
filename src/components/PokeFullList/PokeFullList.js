@@ -3,18 +3,18 @@ import { useQuery } from "@apollo/client";
 import PokeFullListItem from "../PokeFullListItem/PokeFullListItem";
 import styled from "styled-components";
 
-const PokeFullList = () => {
-  const FullListWrapper = styled.div`
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    justify-items: stretch;
-    @media (max-width: 1200px) {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-  `;
+const FullListWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-items: stretch;
+  @media (max-width: 1200px) {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+`;
 
+const PokeFullList = () => {
   const { loading, error, data } = useQuery(POKE_API, {
     variables: { limit: 30, offset: 0 },
   });
