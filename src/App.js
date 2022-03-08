@@ -4,6 +4,7 @@ import PokeFullList from "./components/PokeFullList/PokeFullList";
 import SideMenu from "./components/SideMenu/SideMenu";
 import styled, { css } from "styled-components";
 import backgroundImage from "../src/assets/container_bg.png";
+import PokeSingle from "./components/PokeSingle/PokeSingle";
 
 const Container = styled.section`
   display: flex;
@@ -66,7 +67,7 @@ function App() {
         <Route path="/" exact element={<PokeFullList></PokeFullList>}></Route>
         <Route
           path="/pokemon"
-          element={<p>Future route in progress</p>}
+          element={<PokeSingle></PokeSingle>}
         ></Route>
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>

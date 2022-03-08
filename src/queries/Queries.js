@@ -1,4 +1,3 @@
-
 import { gql } from "@apollo/client";
 
 export const POKE_API = gql`
@@ -15,6 +14,30 @@ export const POKE_API = gql`
         id
         name
         image
+      }
+    }
+  }
+`;
+
+export const POKE_API_SINGLE = gql`
+  query pokemon($name: String!) {
+    pokemon(name: $name) {
+      id
+      name
+      height
+      weight
+      types {
+        type {
+          name
+        }
+      }
+      moves {
+        move {
+          name
+        }
+      }
+      sprites {
+        front_default
       }
     }
   }
