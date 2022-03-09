@@ -22,17 +22,15 @@ const moveImage = keyframes`
  }
 `;
 const ItemWrapper = styled.div`
-  background: #4682b4;
-  width: 170px;
-  height: 200px;
-  margin: 10px;
-  border: 2px solid transparent;
-  transition: 0.1s ease-in-out;
-  border-radius: 16px;
-
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  background: #fff;
+  width: 150px;
+  margin: 10px;
+  border: 2px solid #f2f2f2;
+  transition: 0.1s ease-in-out;
+  border-radius: 5px;
 
   &:hover {
     border: 2px solid #79b9e1;
@@ -45,25 +43,48 @@ const ItemWrapper = styled.div`
     width: 130px;
   }
 `;
-const HeadlineName = styled.h3`
-  font-size: 22px;
-  text-transform: capitalize;
-  color: #e0e0e0;
-  @media (max-width: 768px) {
-    font-size: 18px;
+const FigureItem = styled.figure`
+  background: #f2f2f2;
+  border-radius: 5px;
+  width: 100%;
+  margin: 0;
+
+  img {
+    width: 100%;
+    height: auto;
   }
 `;
-const Image = styled.img`
-  margin: 1px;
+const TextboxInfo = styled.div`
+  padding-left: 12px;
+  p {
+    font-family: "Montserrat", sans-serif;
+    margin: 0.5em 0;
+    font-size: 18px;
+    color: #919191;
+    padding-top: 2px;
+  }
+  h3 {
+    font-family: "Smooch Sans", sans-serif;
+    margin: 0.5em 0;
+    color: #313131;
+    font-size: 22px;
+    text-transform: capitalize;
+    /* @media (max-width: 768px) {
+    font-size: 18px;
+  } */
+  }
 `;
 
 const PokeFullListItem = (props) => {
   return (
     <ItemWrapper>
-      <HeadlineName>
-        #{props.id} {props.name}
-      </HeadlineName>
-      <Image src={props.image} alt={`Pokemon ${props.name} image`} />
+      <FigureItem>
+        <img src={props.image} alt={`Pokemon ${props.name} picture`} />
+      </FigureItem>
+      <TextboxInfo>
+        <p>#{props.id}</p>
+        <h3>{props.name}</h3>
+      </TextboxInfo>
     </ItemWrapper>
   );
 };
