@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 
@@ -143,7 +144,7 @@ const PokeFullListItem = (props) => {
   return (
     <ItemWrapper>
       <FigureItem>
-        <img src={props.image} alt={`Pokemon ${props.name} picture`} />
+        <img src={props.image} alt={`Pokemon ${props.name}`} />
       </FigureItem>
       <TextboxInfo>
         <p>#{props.id}</p>
@@ -151,9 +152,9 @@ const PokeFullListItem = (props) => {
       </TextboxInfo>
       <ControlsArea className="controls-area">
         <button className="control-item">Add</button>
-        <a className="control-item" href="#">
+        <Link className="control-item" to={`/${props.name}`}>
           More
-        </a>
+        </Link>
       </ControlsArea>
     </ItemWrapper>
   );

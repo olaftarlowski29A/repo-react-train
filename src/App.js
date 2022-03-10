@@ -57,7 +57,7 @@ function App() {
       <Headline>PokeApp</Headline>
       <div>
         <Button>
-          <Link to="/pokemon">More</Link>
+          <Link to="/">More</Link>
         </Button>
         <Button backBtn>
           <Link to="/">Back</Link>
@@ -66,7 +66,7 @@ function App() {
       <Routes>
         <Route path="/" exact element={<PokeFullList></PokeFullList>}></Route>
         <Route
-          path="/pokemon"
+          path="/:pokeNameCode"
           element={<PokeSingle></PokeSingle>}
         ></Route>
         <Route path="*" element={<Navigate to="/" />}></Route>

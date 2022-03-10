@@ -1,10 +1,13 @@
 import { POKE_API_SINGLE } from "../../queries/Queries";
 import { useQuery } from "@apollo/client";
+import { useParams } from "react-router";
 
 const PokeSingle = () => {
+  const paramCode = useParams();
+
   const { loading, error, data } = useQuery(POKE_API_SINGLE, {
     variables: {
-      name: "pikachu",
+      name: paramCode.pokeNameCode,
     },
   });
 
