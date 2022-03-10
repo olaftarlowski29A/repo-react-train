@@ -102,13 +102,13 @@ const PokeSingleItem = (props) => {
               </div>
             </div>
             <p>
-              <span>moves:</span>{" "}
+              <span>moves:</span> <br></br>
               {data.moves.map((item) => {
                 return (
-                  <p className={styles.displayTypes} key={item.move.name}>
+                  <span className={styles.displayTypes} key={item.move.name}>
                     {" "}
                     {item.move.name}
-                  </p>
+                  </span>
                 );
               })}
             </p>
