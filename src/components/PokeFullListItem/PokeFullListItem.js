@@ -32,11 +32,34 @@ const ItemWrapper = styled.div`
   transition: 0.1s ease-in-out;
   border-radius: 5px;
 
+  .controls-area {
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s ease-in-out;
+  }
+
   &:hover {
     border: 2px solid #79b9e1;
+    .controls-area {
+      opacity: 1;
+      visibility: visible;
+    }
   }
+
   &:hover img {
     animation: ${moveImage} 1s;
+  }
+  @media (pointer: none), (pointer: coarse) {
+    .controls-area {
+      opacity: 1;
+      visibility: visible;
+    }
+    button.control-item {
+      background-color: rgba(64, 150, 255, 0.8);
+    }
+    a.control-item {
+      background-color: rgba(59, 184, 67, 0.5);
+    }
   }
 
   @media (max-width: 768px) {
@@ -55,6 +78,8 @@ const FigureItem = styled.figure`
   }
 `;
 const TextboxInfo = styled.div`
+  box-sizing: border-box;
+  width: 100%;
   padding-left: 12px;
   p {
     font-family: "Montserrat", sans-serif;
@@ -74,6 +99,45 @@ const TextboxInfo = styled.div`
   } */
   }
 `;
+const ControlsArea = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+
+  .control-item {
+    font-family: "Montserrat", sans-serif;
+    height: 42px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    font-size: 18px;
+    text-decoration: none;
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  button.control-item {
+    &:hover {
+      background-color: rgba(64, 150, 255, 0.8);
+    }
+  }
+  a.control-item {
+    &:hover {
+      background-color: rgba(59, 184, 67, 0.5);
+    }
+  }
+`;
 
 const PokeFullListItem = (props) => {
   return (
@@ -85,6 +149,12 @@ const PokeFullListItem = (props) => {
         <p>#{props.id}</p>
         <h3>{props.name}</h3>
       </TextboxInfo>
+      <ControlsArea className="controls-area">
+        <button className="control-item">Add</button>
+        <a className="control-item" href="#">
+          More
+        </a>
+      </ControlsArea>
     </ItemWrapper>
   );
 };
