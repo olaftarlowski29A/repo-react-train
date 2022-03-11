@@ -16,7 +16,7 @@ const FullListWrapper = styled.div`
 
 const PokeFullList = () => {
   const { loading, error, data } = useQuery(POKE_API, {
-    variables: { limit: 30, offset: 0 },
+    variables: { limit: 60, offset: 0 },
   });
 
   if (loading) return <p>Loading...</p>;
