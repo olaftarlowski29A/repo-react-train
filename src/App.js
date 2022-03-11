@@ -1,12 +1,18 @@
 import { Navigate, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
 import PokeFullList from "./components/PokeFullList/PokeFullList";
+import SideMenu from "./components/SideMenu/SideMenu";
 import styled, { css } from "styled-components";
+import backgroundImage from "../src/assets/container_bg.png";
+import PokeSingle from "./components/PokeSingle/PokeSingle";
 
 const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
+  min-height: 110vh;
+  background: url(${backgroundImage});
 `;
 
 const Button = styled.button`
@@ -18,13 +24,13 @@ const Button = styled.button`
   transition-timing-function: ease-out;
 
   &:hover {
-    background: transparent;
+    background: #fff;
   }
 
   ${(props) =>
     props.backBtn &&
     css`
-      background: transparent;
+      background: #fff;
       color: #000;
 
       &:hover {
@@ -40,13 +46,18 @@ const Button = styled.button`
   }
 `;
 
+const Headline = styled.h1`
+  font-size: 2.5em;
+  text-decoration: underline;
+`;
+
 function App() {
   return (
     <Container>
-      <h1 style={{ fontSize: "2.5em" }}>PokeApp</h1>
+      <Headline>PokeApp</Headline>
       <div>
         <Button>
-          <Link to="/pokemon">More</Link>
+          <Link to="/">More</Link>
         </Button>
         <Button backBtn>
           <Link to="/">Back</Link>
@@ -55,11 +66,12 @@ function App() {
       <Routes>
         <Route path="/" exact element={<PokeFullList></PokeFullList>}></Route>
         <Route
-          path="/pokemon"
-          element={<p>Future route in progress</p>}
+          path="/:pokeNameCode"
+          element={<PokeSingle></PokeSingle>}
         ></Route>
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
+      <SideMenu></SideMenu>
     </Container>
   );
 }
