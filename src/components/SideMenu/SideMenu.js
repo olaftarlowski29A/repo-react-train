@@ -1,5 +1,6 @@
 import Sidebar from "react-sidebar";
 import React, { useState } from "react";
+import SideMenuContent from "../SideMenuContent/SideMenuContent";
 
 const SideMenu = () => {
   const [sideMenuToggle, setSideMenuToggle] = useState(false);
@@ -16,7 +17,11 @@ const SideMenu = () => {
 
   return (
     <Sidebar
-      sidebar={<b>Sidebar content</b>}
+      sidebar={
+        <SideMenuContent>
+          <b>Sidebar content</b>
+        </SideMenuContent>
+      }
       open={sideMenuToggle}
       onSetOpen={sideMenuTogglehandler}
       styles={{
