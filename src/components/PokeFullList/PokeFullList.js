@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import PokeFullListItem from "../PokeFullListItem/PokeFullListItem";
 import styled from "styled-components";
 import { useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const FullListWrapper = styled.div`
   display: grid;
@@ -18,12 +19,19 @@ const FullListWrapper = styled.div`
 const PokeFullList = () => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const limitStep = 24;
+
+  const [queryLoadVar, setQueryLoadVar] = useState(true);
+
   const { loading, error, data, fetchMore } = useQuery(POKE_API, {
     variables: { limit: limitStep, offset: 0 },
   });
 
   const fetchMoreHandler = async () => {
     setIsLoadingMore(true);
+    if (data.pokemons.results.length >= data.pokemons.count) {
+      setQueryLoadVar(false);
+      return;
+    }
     // fetching again with new variables, this case increase limit
     // the offset is required for pagination approach
     await fetchMore({
@@ -65,7 +73,20 @@ const PokeFullList = () => {
             fetch {limitStep} more results
           </button>
         )}
-        <FullListWrapper>{dataResults}</FullListWrapper>
+        <InfiniteScroll
+          dataLength={dataResults.length}
+          next={fetchMoreHandler}
+          hasMore={queryLoadVar}
+          loader={<h4>Loading...</h4>}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>No more results.</b>
+            </p>
+          }
+          scrollThreshold={"200px"}
+        >
+          <FullListWrapper>{dataResults}</FullListWrapper>
+        </InfiniteScroll>
       </div>
     );
   }
