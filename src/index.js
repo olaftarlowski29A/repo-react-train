@@ -11,6 +11,7 @@ import {
   HttpLink,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+// import { offsetLimitPagination } from "@apollo/client/utilities";
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
@@ -29,7 +30,20 @@ const link = from([
 
 const client = new ApolloClient({
   link,
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          pokemons: {
+            keyArgs: false,
+            merge(existing = {}, incoming) {
+              return { ...existing, ...incoming };
+            },
+          },
+        },
+      },
+    },
+  }),
 });
 
 ReactDOM.render(
