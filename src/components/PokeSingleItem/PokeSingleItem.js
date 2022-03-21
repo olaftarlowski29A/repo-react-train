@@ -1,7 +1,15 @@
 import styles from "./PokeSingleItem.module.css";
 
 const PokeSingleItem = (props) => {
-  const data = props.pokeData;
+  const {
+    id,
+    name,
+    height,
+    weight,
+    pokemon_v2_pokemontypes,
+    pokemon_v2_pokemonmoves,
+  } = props.pokeData;
+  const { sprites} = props.imgData;
 
   return (
     <div className={styles.wrapper}>
@@ -25,10 +33,11 @@ const PokeSingleItem = (props) => {
                   <div className={styles.dotItem}></div>
                 </div>
                 <div className={styles.midDisplay}>
-                  <img
+                  {/* <img
                     src={data.sprites.front_default}
                     alt={`Pokemon ${data.name}`}
-                  />
+                  /> */}
+                  <p>{sprites}</p>
                 </div>
                 <div className={styles.botItems}>
                   <div className={styles.dotItemBig}></div>
@@ -79,23 +88,26 @@ const PokeSingleItem = (props) => {
         <div className={styles.rightOverlay}>
           <div className={styles.dataDisplay}>
             <div>
-              <span>#{data.id}</span>
-              <h2>{data.name}</h2>
+              <span>#{id}</span>
+              <h2>{name}</h2>
             </div>
             <div>
-              <span>height:</span> <p>{data.height}"</p>
+              <span>height:</span> <p>{height}"</p>
             </div>
             <div>
-              <span>weight:</span> <p>{data.weight} lbs.</p>
+              <span>weight:</span> <p>{weight} lbs.</p>
             </div>
             <div>
               <span>types:</span>{" "}
               <div>
-                {data.types.map((item) => {
+                {pokemon_v2_pokemontypes.map((item) => {
                   return (
-                    <p className={styles.displayTypes} key={item.type.name}>
+                    <p
+                      className={styles.displayTypes}
+                      key={item.pokemon_v2_type.id}
+                    >
                       {" "}
-                      {item.type.name}{" "}
+                      {item.pokemon_v2_type.name}{" "}
                     </p>
                   );
                 })}
@@ -103,11 +115,14 @@ const PokeSingleItem = (props) => {
             </div>
             <p>
               <span>moves:</span> <br></br>
-              {data.moves.map((item) => {
+              {pokemon_v2_pokemonmoves.map((item) => {
                 return (
-                  <span className={styles.displayTypes} key={item.move.name}>
+                  <span
+                    className={styles.displayTypes}
+                    key={item.pokemon_v2_move.id}
+                  >
                     {" "}
-                    {item.move.name}
+                    {item.pokemon_v2_move.name}
                   </span>
                 );
               })}

@@ -24,7 +24,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 const link = from([
   errorLink,
-  new HttpLink({ uri: "https://graphql-pokeapi.vercel.app/api/graphql" }),
+  new HttpLink({ uri: "https://beta.pokeapi.co/graphql/v1beta" }),
 ]);
 
 const client = new ApolloClient({

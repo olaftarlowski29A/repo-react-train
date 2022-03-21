@@ -1,4 +1,4 @@
-import { POKE_API } from "../../queries/Queries";
+import { POKE_API } from "../../apollo/queries";
 import { useQuery } from "@apollo/client";
 import PokeFullListItem from "../PokeFullListItem/PokeFullListItem";
 import styled from "styled-components";
